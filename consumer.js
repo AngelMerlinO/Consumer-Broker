@@ -25,10 +25,12 @@ const rabbitSettings = {
         const options = {
             method: "POST",
             body: JSON.stringify({
-              affectedUserId: JSON.parse(msg.content.toString()).affectedUserId,
-              type: JSON.parse(msg.content.toString()).type,
-              description: JSON.parse(msg.content.toString()).description,
-              severity: JSON.parse(msg.content.toString()).severity,
+                type: JSON.parse(msg.content.toString()).type,
+                description: JSON.parse(msg.content.toString()).description,
+                dateTime: new Date().toLocaleString(),
+                severity: JSON.parse(msg.content.toString()).severity,
+                status: 0,
+                affectedUserId: JSON.parse(msg.content.toString()).affectedUserId,
               
             }),
             headers: {
