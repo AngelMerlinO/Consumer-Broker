@@ -25,10 +25,10 @@ const rabbitSettings = {
         const options = {
             method: "POST",
             body: JSON.stringify({
-              affectedUserId: msg.content.toJSON().affectedUserId,
-              type: msg.content.toJSON().type,
-              description: msg.content.toJSON().description,
-              severity: msg.content.toJSON().severity,
+              affectedUserId: JSON.parse(msg.content.toString()).affectedUserId,
+              type: JSON.parse(msg.content.toString()).type,
+              description: JSON.parse(msg.content.toString()).description,
+              severity: JSON.parse(msg.content.toString()).severity,
               
             }),
             headers: {
@@ -51,7 +51,7 @@ const rabbitSettings = {
     console.log('Canal creado exitosamente');
 
     channel2.consume(queue2, async (msg) => {
-        socket.emit('alert', msg.content.toJSON());
+        socket.emit('alert', JSON.parse(msg.content.toString()));
         channel2.ack(msg);
         console.log(msg.content.toString());
     });
